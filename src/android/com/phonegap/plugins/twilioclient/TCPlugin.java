@@ -102,12 +102,16 @@ public class TCPlugin extends CordovaPlugin implements DeviceListener,
 	public boolean execute(final String action, final JSONArray args,
 			final CallbackContext callbackContext) throws JSONException {
 		
-		Log.d("TCPlugin","Executou");
+		Log.d("TCPlugin","Executou a action" + action);
 
 		if ("deviceSetup".equals(action)) {
+			Log.d("TCPlugin","Entrou no device setup");
 			if (Twilio.isInitialized()) {
+				Log.d("TCPlugin","Está inicializado");
 				deviceSetup(args, callbackContext);
 			} else {
+				Log.d("TCPlugin","Não está inicializado");
+
 				mInitCallbackContext = callbackContext;
 				mInitDeviceSetupArgs = args;
 				if(cordova.hasPermission(RECORD_AUDIO))
@@ -172,7 +176,7 @@ public class TCPlugin extends CordovaPlugin implements DeviceListener,
 	 * 
 	 */
 	private void initTwilio(CallbackContext callbackContext) {
-				Log.d("TCPlugin","Executou");
+		Log.d("TCPlugin","Inicializando twilio");
 
 		Twilio.initialize(cordova.getActivity().getApplicationContext(), this);
 	}
@@ -184,7 +188,8 @@ public class TCPlugin extends CordovaPlugin implements DeviceListener,
 	 */
 	private void deviceSetup(JSONArray arguments,
 			final CallbackContext callbackContext) {
-						Log.d("TCPlugin","Executou");
+		
+		Log.d("TCPlugin","Device setup");
 
 		if (arguments == null || arguments.length() < 1) {
 			callbackContext.sendPluginResult(new PluginResult(
@@ -214,7 +219,8 @@ public class TCPlugin extends CordovaPlugin implements DeviceListener,
 		cordova.getThreadPool().execute(new Runnable(){
 				public void run() {
 					try {
-						Thread.sleep(1000);
+						Log.d("TCPlugin","Gambeta");
+						Thread.sleep(4000);
 						deviceStatusEvent(callbackContext);
 					} catch (InterruptedException ex) {
 						Log.e(TAG,"InterruptedException: " + ex.getMessage(),ex);
@@ -224,6 +230,9 @@ public class TCPlugin extends CordovaPlugin implements DeviceListener,
 	}
             
 	private void deviceStatusEvent(CallbackContext callbackContext) {
+
+		Log.d("TCPlugin","Device status event");
+
 		if (mDevice == null) {
 			callbackContext.sendPluginResult(new PluginResult(
 					PluginResult.Status.ERROR));
@@ -285,6 +294,8 @@ public class TCPlugin extends CordovaPlugin implements DeviceListener,
 	}
 	
 	private void acceptConnection(JSONArray arguments, CallbackContext callbackContext) {
+		Log.d("TCPlugin","Device acceptConnection");
+
 		mConnection.accept();
 		callbackContext.success(); 
 	}
