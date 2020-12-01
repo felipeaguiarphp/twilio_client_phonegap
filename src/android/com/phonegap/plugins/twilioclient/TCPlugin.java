@@ -101,6 +101,9 @@ public class TCPlugin extends CordovaPlugin implements DeviceListener,
 	@Override
 	public boolean execute(final String action, final JSONArray args,
 			final CallbackContext callbackContext) throws JSONException {
+		
+		Log.d("TCPlugin","Executou");
+
 		if ("deviceSetup".equals(action)) {
 			if (Twilio.isInitialized()) {
 				deviceSetup(args, callbackContext);
@@ -169,6 +172,8 @@ public class TCPlugin extends CordovaPlugin implements DeviceListener,
 	 * 
 	 */
 	private void initTwilio(CallbackContext callbackContext) {
+				Log.d("TCPlugin","Executou");
+
 		Twilio.initialize(cordova.getActivity().getApplicationContext(), this);
 	}
 
@@ -179,6 +184,8 @@ public class TCPlugin extends CordovaPlugin implements DeviceListener,
 	 */
 	private void deviceSetup(JSONArray arguments,
 			final CallbackContext callbackContext) {
+						Log.d("TCPlugin","Executou");
+
 		if (arguments == null || arguments.length() < 1) {
 			callbackContext.sendPluginResult(new PluginResult(
 					PluginResult.Status.ERROR));
@@ -490,7 +497,7 @@ public class TCPlugin extends CordovaPlugin implements DeviceListener,
 
 	@Override
 	public void onInitialized() {
-		Log.d(TAG, "Twilio Plugin Initialized");
+		Log.d(TAG, "Twilio Plugin iniciou");
 		deviceSetup(mInitDeviceSetupArgs, mInitCallbackContext);
 	}
 
