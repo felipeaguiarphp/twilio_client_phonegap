@@ -553,7 +553,7 @@ public class TCPlugin extends CordovaPlugin implements DeviceListener,
 	// Plugin-to-Javascript communication methods
 	private void javascriptCallback(String event, JSONObject arguments,
 			CallbackContext callbackContext) {
-				Log.info(TAG, "Callback"+ callbackContext)
+				Log.info(TAG, "Callback"+ callbackContext);
 		if (callbackContext == null) {
 			return;
 		}
