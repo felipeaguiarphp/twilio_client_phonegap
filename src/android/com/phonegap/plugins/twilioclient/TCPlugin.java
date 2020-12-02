@@ -207,7 +207,7 @@ public class TCPlugin extends CordovaPlugin implements DeviceListener,
 			return;
 		}
 		mDevice = Twilio.createDevice(arguments.optString(0), this);
-
+		Log.d("TCPlugin","mDevice"+ mDevice);
 		Intent intent = new Intent(this.cordova.getActivity(), IncomingConnectionActivity.class);
 		PendingIntent pendingIntent = PendingIntent.getActivity(this.cordova.getActivity(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 		mDevice.setIncomingIntent(pendingIntent);
@@ -219,8 +219,9 @@ public class TCPlugin extends CordovaPlugin implements DeviceListener,
 		cordova.getThreadPool().execute(new Runnable(){
 				public void run() {
 					try {
+						Log.d("TCPlugin","Callback context "+callbackContext);
 						Log.d("TCPlugin","Gambeta");
-						Thread.sleep(4000);
+						Thread.sleep(10000);
 						deviceStatusEvent(callbackContext);
 					} catch (InterruptedException ex) {
 						Log.e(TAG,"InterruptedException: " + ex.getMessage(),ex);
@@ -238,6 +239,9 @@ public class TCPlugin extends CordovaPlugin implements DeviceListener,
 					PluginResult.Status.ERROR));
 			return;
 		}
+
+		Log.d("TCPlugin","Device status event"+mDevice.getState());
+
 		switch (mDevice.getState()) {
 		case OFFLINE:
 			javascriptCallback("onoffline", callbackContext);
@@ -549,6 +553,7 @@ public class TCPlugin extends CordovaPlugin implements DeviceListener,
 	// Plugin-to-Javascript communication methods
 	private void javascriptCallback(String event, JSONObject arguments,
 			CallbackContext callbackContext) {
+				Log.info(TAG, "Callback"+ callbackContext)
 		if (callbackContext == null) {
 			return;
 		}
