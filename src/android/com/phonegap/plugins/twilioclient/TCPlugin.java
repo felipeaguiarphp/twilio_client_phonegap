@@ -340,7 +340,7 @@ public class TCPlugin extends CordovaPlugin implements DeviceListener,
 					PluginResult.Status.ERROR));
 			return;
 		}
-		Log.d(TAG, 'Estado atual' + mDevice.getState());
+		Log.d(TAG, "Estado atual" + mDevice.getState());
 		String state = "";
 		switch (mDevice.getState()) {
 		case BUSY:
