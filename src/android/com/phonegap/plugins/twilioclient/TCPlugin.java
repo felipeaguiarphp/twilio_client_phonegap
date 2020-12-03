@@ -238,16 +238,15 @@ public class TCPlugin extends CordovaPlugin implements DeviceListener,
 			return;
 		}
 
-		Log.d("TCPlugin","Device status event"+mDevice.getState());
-		Log.d("TCPlugin", mDevice.getState());
-		for(int i = 0; i <= 10; i++) {
+		// Log.d("TCPlugin","Device status event"+mDevice.getState());
 
-			// if (mDevice.getState() == State.READY) {
-			// 	Log.d("TCPlugin", "Entrou no ready");
-			// 	break;
-			// }
-			Thread.sleep(1000);
-		}
+		// for(int i = 0; i <= 10; i++) {
+		// 	if (mDevice.getState() == State.READY) {
+		// 		Log.d("TCPlugin", "Entrou no ready");
+		// 		break;
+		// 	}
+		// 	Thread.sleep(1000);
+		// }
 
 		switch (mDevice.getState()) {
 		case OFFLINE:
