@@ -220,8 +220,7 @@ public class TCPlugin extends CordovaPlugin implements DeviceListener,
 				public void run() {
 					try {
 						Log.d("TCPlugin","Callback context "+callbackContext);
-						Log.d("TCPlugin","Gambeta");
-						Thread.sleep(70000);
+						Thread.sleep(50000);
 						deviceStatusEvent(callbackContext);
 					} catch (InterruptedException ex) {
 						Log.e(TAG,"InterruptedException: " + ex.getMessage(),ex);
@@ -341,6 +340,7 @@ public class TCPlugin extends CordovaPlugin implements DeviceListener,
 					PluginResult.Status.ERROR));
 			return;
 		}
+		Log.d(TAG, 'Estado atual' + mDevice.getState());
 		String state = "";
 		switch (mDevice.getState()) {
 		case BUSY:
