@@ -220,6 +220,7 @@ public class TCPlugin extends CordovaPlugin implements DeviceListener,
 				public void run() {
 					try {
 						Log.d("TCPlugin","Callback context "+callbackContext);
+						Thread.sleep(1000);
 						deviceStatusEvent(callbackContext);
 					} catch (InterruptedException ex) {
 						Log.e(TAG,"InterruptedException: " + ex.getMessage(),ex);
@@ -238,15 +239,7 @@ public class TCPlugin extends CordovaPlugin implements DeviceListener,
 			return;
 		}
 
-		// Log.d("TCPlugin","Device status event"+mDevice.getState());
-
-		// for(int i = 0; i <= 10; i++) {
-		// 	if (mDevice.getState() == State.READY) {
-		// 		Log.d("TCPlugin", "Entrou no ready");
-		// 		break;
-		// 	}
-		// 	Thread.sleep(1000);
-		// }
+		Log.d("TCPlugin","Device status event"+mDevice.getState());
 
 		switch (mDevice.getState()) {
 		case OFFLINE:
