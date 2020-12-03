@@ -220,7 +220,7 @@ public class TCPlugin extends CordovaPlugin implements DeviceListener,
 				public void run() {
 					try {
 						Log.d("TCPlugin","Callback context "+callbackContext);
-						sleep(10000);
+						Thread.sleep(10000);
 						deviceStatusEvent(callbackContext);
 					} catch (InterruptedException ex) {
 						Log.e(TAG,"InterruptedException: " + ex.getMessage(),ex);
@@ -239,6 +239,8 @@ public class TCPlugin extends CordovaPlugin implements DeviceListener,
 			return;
 		}
 
+		Log.d("TCPlugin","Device status event"+mDevice.getState());
+		
 		switch (mDevice.getState()) {
 		case OFFLINE:
 			javascriptCallback("onoffline", callbackContext);
