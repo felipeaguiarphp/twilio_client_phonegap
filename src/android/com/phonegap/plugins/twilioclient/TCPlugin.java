@@ -227,7 +227,7 @@ public class TCPlugin extends CordovaPlugin implements DeviceListener,
 									return;
 								default:
 							}
-							thread.sleep(1000);
+							Thread.sleep(1000);
 						}	
 						deviceStatusEvent(callbackContext);
 					} catch (InterruptedException ex) {
